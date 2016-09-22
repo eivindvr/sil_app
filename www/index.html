@@ -5,26 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta http-equiv="Content-Security-Policy" content="script-src: 'self' 'unsafe-inline' 'unsafe-eval' 'https://www.youtube.com'">
-
 
     <title>Shootitlive</title>
     <!-- Path to Framework7 Library CSS-->
     <link rel="stylesheet" href="css/framework7.ios.min.css">
     <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
-    <link rel="stylesheet" href="path/to/framework7.material.min.css">
 
     <style>
     .picker-modal {height:340px;}
     </style>
     <!-- It should be included After main Framework7 styles -->
-    <link rel="stylesheet" href="path/to/framework7.material.colors.min.css">
-    <!-- Path to your custom app styles-->
+<!--     <link rel="stylesheet" href="path/to/framework7.material.colors.min.css">
+ -->    <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="css/my-app.css">
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
   </head>
-  <body class="theme-black">
-                    <!-- Should be a direct child of BODY -->
+  <body class="theme-black">   
+          <!-- Should be a direct child of BODY -->
                     <div class="login-screen">
                      <!-- Default view-page layout -->
                           <div class="view">
@@ -69,7 +66,6 @@
                     <!-- end login screen -->
 
     <!-- Views-->
-
     <div class="views">
       <!-- Your main view, should have "view-main" class-->
       <div class="view view-main">
@@ -97,20 +93,25 @@
 
         <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
         <div class="pages navbar-through toolbar-through">
-                      <!-- Page, data-page contains page name-->
-                      <div data-page="index" class="page">
-                        <div class="page-content">   
-                              <div id="mainTitle" class="content-block-title">Projects</div>
-                              <!-- Virtual List -->
-                              <div class="list-block virtual-list">
-                                <!-- keep it empty -->
-                              </div>
+                    <!-- Page, data-page contains page name-->
+                    <div data-page="index" class="page">
+                      <div class="page-content pull-to-refresh-content">   
+                        <div class="pull-to-refresh-layer">
+                          <div class="preloader"></div>
+                          <div class="pull-to-refresh-arrow"></div>
                         </div>
-                      </div><!-- end index page -->
+                        <div class="content-block">
+                          <div id="mainTitle" class="content-block-title">Projects</div>
+                          <!-- Virtual List -->
+                          <div class="list-block virtual-list"></div>
+                        </div>
+                      </div>
+                    </div><!-- end index page -->
+                    
                     <!-- About page -->
                     <div class="page cached" data-page="yolo">
-                      <div class="page-content">
-                          <div class="content-block">
+                      <div class="page-content">   
+                        <div class="content-block">
                              <p><a href="#" class="button capture-media button-big">PHOTO</a></p>
                             <p><a href="#" class="button capture-video button-big">VIDEO</a></p>
                             <p><a href="#" class="button select-media button-big">Camera Roll</a></p>
@@ -119,36 +120,14 @@
                       </div>
                     </div>
 
-                    
-                    
-
-
                      <!-- Settings page -->
                     <div class="page cached" data-page="settings">
                       <div class="page-content">
-                          <div class="content-block">
-                              <p><a id="logOut" href="#" class="button">Log out</a></p>
+                            <div class="content-block">
+                                <p><a id="logOut" href="#" class="button">Log out</a></p>
                             </div>
-                            <!-- Form has additional "store-data" class to enable form storage on this form -->        
-                            <form id="my-form" class="list-block store-data">
-                            <div class="content-block-title">Metadata</div>
-                                <div class="list-block">
-                                  <ul>
-                                    <li class="item-content">
-                                      <div class="item-inner">
-                                              <div class="item-title label">Byline</div>
-                                              <div class="item-input">
-                                                <!-- Make sure that input have "name attrobute" -->
-                                                <input type="text" name="byline" placeholder="">
-                                              </div>          
-                                            </div>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </form>
+                        </div>
                       </div>
-                    </div>
                   <!-- END Settings page -->
 
 

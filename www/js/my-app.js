@@ -20,7 +20,6 @@
     function onPhotoURISuccess(imageURI) {
       var largeImage = document.getElementById('smallImage');
       largeImage.src = imageURI;
-      var uploadFile = imageURI;
 
       if(isVideo(imageURI) == true){
                 $$('#smallImage').attr('src', imageURI);
@@ -58,11 +57,16 @@
     }
 
 function uploadPhoto(imageURI, caption, client, project, ftp, psw) {
-
-
             var storedData = myApp.formGetData('my-form');
+
+            if(storedData != null){
+                var byline = storedData['byline'];
+            }
+            else{
+                byline = '';
+            }
+
             var ftp_password = psw;
-            var byline = storedData['byline'];
             var client = client;
             var project = project;
             var caption = caption;
@@ -107,7 +111,7 @@ function uploadPhoto(imageURI, caption, client, project, ftp, psw) {
             //alert("An error has occurred: Code = " + error.code);
             // alert("upload error source " + error.source);
             // alert("upload error target " + error.target);
-            alert("An error has occurred");
+            myApp.alert("An error has occurred");
             myApp.closeNotification(".notification-item");
         }
 
@@ -183,8 +187,6 @@ myApp.onPageInit('about', function (page) {
     });
 });
 
-var uploadzzzzz; 
-
 // In page events:
 $$(document).on('pageInit', function (e) {
     // Page Data contains all required information about loaded and initialized page 
@@ -215,36 +217,6 @@ $$(document).on('pageReinit', function (e) {
         //$$('#upload-title').text(title);
     }
 });
-
-// Generate dynamic page
-var dynamicPageIndex = 0;
-function createContentPage() {
-	mainView.router.loadContent(
-        '<!-- Top Navbar-->' +
-        '<div class="navbar">' +
-        '  <div class="navbar-inner">' +
-        '    <div class="left"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
-        '    <div class="center sliding">Dynamic Page ' + (++dynamicPageIndex) + '</div>' +
-        '  </div>' +
-        '</div>' +
-        '<div class="pages">' +
-        '  <!-- Page, data-page contains page name-->' +
-        '  <div data-page="dynamic-pages" class="page">' +
-        '    <!-- Scrollable page content-->' +
-        '    <div class="page-content">' +
-        '      <div class="content-block">' +
-        '        <div class="content-block-inner">' +
-        '          <p>Here is a dynamic page created on ' + new Date() + ' !</p>' +
-        '          <p>Go <a href="#" class="back">back</a> or go to <a href="services.html">Services</a>.</p>' +
-        '        </div>' +
-        '      </div>' +
-        '    </div>' +
-        '  </div>' +
-        '</div>'
-    );
-	return;
-}
-
  
 $$('.capture-media').on('click', function() {
     capturePhoto();
@@ -265,8 +237,8 @@ $$('#cancelButton').on('click', function() {
 });
 
 $$('#logOut').on('click', function() {
-    myApp.formDeleteData('login');
     myApp.formDeleteData('my-form');
+    myApp.formDeleteData('login');
     myList.deleteAllItems();
     myApp.loginScreen();  
 });
@@ -280,7 +252,7 @@ $$('.login-screen').on('closed', function () {
         testCall(userPass['username'], userPass['password']);
     }
     if(userPass == null){
-        alert(userPass);
+        myApp.alert(userPass);
     }
 });
 
@@ -308,11 +280,9 @@ function createPicker(client, project) {
       '</div>' +
     '</div>' 
   )
-};    
-
+}    
 
 function testCall(usr, psw){
-
             var userName = usr;
             var passWord = psw;
             projectArr = [];
@@ -349,7 +319,7 @@ function testCall(usr, psw){
                         }
                     },
                     error: function(data) {
-                            alert('error');
+                            myApp.alert('error');
                     }
                 });
 }
@@ -365,6 +335,18 @@ template: '<li><a href="#yolo?title={{title}}&client={{client}}&project={{projec
               '</div></div></a>' +
            '</li>'
 }); 
+
+// Pull to refresh content
+var ptrContent = $$('.pull-to-refresh-content');
+ 
+// Add 'refresh' listener on it
+ptrContent.on('refresh', function (e) {
+    // Emulate 2s loading
+    setTimeout(function () {
+        // When loading done, we need to reset it
+        myApp.pullToRefreshDone();
+    }, 2000);
+});
 
 $$('#uploadButton').on('click', function() {
     var imgsrc = $$('#smallImage').attr('src');   
