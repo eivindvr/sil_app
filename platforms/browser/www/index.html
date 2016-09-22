@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Security-Policy" content="script-src: 'self' 'unsafe-inline' 'unsafe-eval' 'https://www.youtube.com'">
+
+
+    <title>Shootitlive</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href="path/to/framework7.material.min.css">
+
+    <style>
+    .picker-modal {height:340px;}
+    </style>
+    <!-- It should be included After main Framework7 styles -->
+    <link rel="stylesheet" href="path/to/framework7.material.colors.min.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/my-app.css">
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+  </head>
+  <body class="theme-black">
+                    <!-- Should be a direct child of BODY -->
+                    <div class="login-screen">
+                     <!-- Default view-page layout -->
+                          <div class="view">
+                            <div class="page">
+                              <!-- page-content has additional login-screen content -->
+                              <div class="page-content login-screen-content">
+                                <div class="login-screen-title">Shootitlive</div>
+                                <!-- Login form -->
+                                <form id="login" class="list-block store-data">
+                                  <div class="list-block">
+                                    <ul>
+                                      <li class="item-content">
+                                        <div class="item-inner">
+                                          <div class="item-title label">Username</div>
+                                          <div class="item-input">
+                                            <input type="text" name="username" placeholder="Username">
+                                          </div>
+                                        </div>
+                                      </li>
+                                      <li class="item-content">
+                                        <div class="item-inner">
+                                          <div class="item-title label">Password</div>
+                                          <div class="item-input">
+                                            <input type="password" name="password" placeholder="Password">
+                                          </div>
+                                        </div>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <div class="list-block">
+                                    <ul>
+                                      <li>
+                                        <a href="#" class="item-link list-button close-login-screen">Sign In</a>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                    <!-- end login screen -->
+
+    <!-- Views-->
+
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+      <div class="view view-main">
+          <!-- Top Navbar-->
+          <div class="navbar">
+            <div class="navbar-inner">
+              <!-- We have home navbar without left link-->
+              <div class="left"><a href="#" class="link icon-only"><i class="icon icon-name"></i></a></div>
+              <div class="center">Shootitlive Upload</div>
+              <div class="right"><a href="#settings" class="link icon-only"><i class="icon icon-bars"></i></a></div>
+            </div>
+          </div>
+
+              <!-- Upload page navbar -->
+          <div class="navbar-inner cached" data-page="yolo">
+            <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+            <div id="upload-title" class="center">Upload</div>
+          </div>
+
+            <!-- Upload page navbar -->
+          <div class="navbar-inner cached" data-page="settings">
+            <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+            <div id="upload-title" class="center">Settings</div>
+          </div>
+
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+                      <!-- Page, data-page contains page name-->
+                      <div data-page="index" class="page">
+                        <div class="page-content">   
+                              <div id="mainTitle" class="content-block-title">Projects</div>
+                              <!-- Virtual List -->
+                              <div class="list-block virtual-list">
+                                <!-- keep it empty -->
+                              </div>
+                        </div>
+                      </div><!-- end index page -->
+                    <!-- About page -->
+                    <div class="page cached" data-page="yolo">
+                      <div class="page-content">
+                          <div class="content-block">
+                             <p><a href="#" class="button capture-media button-big">PHOTO</a></p>
+                            <p><a href="#" class="button capture-video button-big">VIDEO</a></p>
+                            <p><a href="#" class="button select-media button-big">Camera Roll</a></p>
+                            <p id="createPicker"></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    
+                    
+
+
+                     <!-- Settings page -->
+                    <div class="page cached" data-page="settings">
+                      <div class="page-content">
+                          <div class="content-block">
+                              <p><a id="logOut" href="#" class="button">Log out</a></p>
+                            </div>
+                            <!-- Form has additional "store-data" class to enable form storage on this form -->        
+                            <form id="my-form" class="list-block store-data">
+                            <div class="content-block-title">Metadata</div>
+                                <div class="list-block">
+                                  <ul>
+                                    <li class="item-content">
+                                      <div class="item-inner">
+                                              <div class="item-title label">Byline</div>
+                                              <div class="item-input">
+                                                <!-- Make sure that input have "name attrobute" -->
+                                                <input type="text" name="byline" placeholder="">
+                                              </div>          
+                                            </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </form>
+                      </div>
+                    </div>
+                  <!-- END Settings page -->
+
+
+        </div><!-- end Pages -->
+      </div>
+    </div>
+
+
+  <!-- About Popup -->
+  <div class="popup popup-media">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left"></div>
+            <div class="center">Media</div>
+            <div class="right"></div>            
+          </div>
+      </div>
+      <div class="content-block">
+         <!-- media-list -->
+          <div class="list-block media-list">
+            <ul>
+              <li>
+                <div class="item-content">
+                  <div class="item-media"><img src="" id="smallImage" width="100" />
+                  <div id="videoArea" style="display:none; background:#000;">
+                       
+                  </div>
+                </div>
+                  <div class="item-inner">
+                    <div class="item-subtitle"><div class="item-input"><input id="caption" type="text" name="caption" placeholder="Add a caption"></div></div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- media-list -->
+          <div class="toolbar">
+              <div class="toolbar-inner">
+                  <a href="#" id="cancelButton" class="link">Cancel</a>
+                  <a href="#" class="link"></a>
+                  <a href="#" id="uploadButton" class="link">Upload</a>
+              </div>
+          </div>
+      </div>
+  </div>
+     
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+  </body>
+</html>

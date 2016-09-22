@@ -1,0 +1,39 @@
+
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+    <div class="center sliding">Settings</div>
+  </div>
+</div>
+<div class="pages">
+  <!-- Page, data-page contains page name-->
+  <div data-page="form" class="page">
+    <!-- Scrollable page content-->
+    <div class="page-content">
+      <div class="content-block">
+          <p><a id="logOut" href="#" class="button">Log out</a></p>
+        </div>
+        <!-- Form has additional "store-data" class to enable form storage on this form -->        
+        <form id="my-form" class="list-block store-data">
+        <div class="content-block-title">Metadata</div>
+            <div class="list-block">
+              <ul>
+                <li class="item-content">
+                  <div class="item-inner">
+                          <div class="item-title label">Byline</div>
+                          <div class="item-input">
+                            <!-- Make sure that input have "name attrobute" -->
+                            <input type="text" name="byline" placeholder="">
+                          </div>          
+                        </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </form>
+
+      </div>    
+  </div>
+</div>
